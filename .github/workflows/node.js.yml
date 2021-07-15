@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main]
+    branches: [ master ]
 
 jobs:
   build:
@@ -26,4 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
+    - run: pwd
+    - run: npm i -g @sap/cds-dk
+    - run: cds import ./build/PLTUserManagement.edmx
+    - run: cds import ./build/FoundationPlatformPLT.edmx
+    - run: cds import ./build/ECSkillsManagement.edmx   
     - run: npm test
